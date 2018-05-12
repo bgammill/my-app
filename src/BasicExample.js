@@ -1,79 +1,66 @@
 import React from 'react'
-import Redux from 'redux'
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Switch,
+  Redirect
 } from 'react-router-dom'
+import './BasicExample.css';
 
 const Home = () => (
   <div>
-    <h2>Home</h2>
+    <h2>home - 1a4.xyz</h2>
+    <div className="container">
+      <div className="row">
+        <div className="col-lg">
+          you
+        </div>
+        <div className="col-lg">
+          have
+        </div>
+        <div className="col-lg">
+          arrived
+        </div>
+      </div>
+    </div>
   </div>
 )
 
 const Wello = () => (
   <div>
-    <h2>Wello!</h2>
+    <h2>wello - 1a4.xyz</h2>
   </div>
 )
 
 const About = () => (
   <div>
-    <h2>About</h2>
+    <h2>about - 1a4.xyz</h2>
   </div>
 )
 
-const Topic = ({ match }) => (
+const NoMatch = ({ location }) => (
   <div>
-    <h3>{match.params.topicId}</h3>
+    <h3>
+      No match for <code>{location.pathname}</code>
+    </h3>
   </div>
-)
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-        Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-        Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-        Props v. State
-        </Link>
-      </li>
-    </ul>
-
-    <Route path={`${match.path}/:topicId`} component={Topic}/>
-    <Route exact path={match.path} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-)
+);
 
 const BasicExample = () => (
   <Router>
-  <div>
-    <ul>
-    <li><Link to="/">Home</Link></li>
-    <li><Link to="/about">About</Link></li>
-    <li><Link to="/topics">Topics</Link></li>
-    <li><Link to="/wello">Wello</Link></li>
-    </ul>
+    <div>
+      <ul className="BasicExample">
+        <li className="BasicExample"><Link to="/">Home</Link></li>
+        <li className="BasicExample"><Link to="/about">About</Link></li>
+        <li className="BasicExample"><Link to="/wello">Wello</Link></li>
+      </ul>
 
-    <hr/>
+      <hr/>
 
-    <Route exact path="/" component={Home}/>
-    <Route path="/about" component={About}/>
-    <Route path="/topics" component={Topics}/>
-    <Route path="/wello" component={Wello}/>
+      <Route exact path="/" component={Home}/>
+      <Route path="/about" component={About}/>
+      <Route path="/wello" component={Wello}/>
     </div>
   </Router>
 )
